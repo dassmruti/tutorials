@@ -1,0 +1,47 @@
+
+block.rb:
+a=[3,6,9,5,8,7,5]
+
+a.each { |ele| print ele*4 + ele*3 }
+
+def add
+ puts "Adding"
+  yield(4) if block_given?
+end
+
+add  { |ele| print ele*4 + ele*3 }
+class Array
+  def random_each
+    shuffle.each do |obj|
+      yield obj
+    end
+  end
+end
+puts a.class
+a.random_each { |ele| puts ele }
+
+lambda.rb:
+# Strict with Arguments, Loose Return type
+def print_name(p)
+  puts "Hello Welcome to Proc "
+  p.call("Smruti")
+  puts "Hello Bye Bye Proc"
+end
+lam =lambda {|name| puts "Hello #{name} ! How are you today ?"; return }
+print_name lam
+
+proc.rb:
+#Strict Return type , Loose Argument Check
+def print_name(p)
+  puts "Hello Welcome to Proc "
+  p.call("Smruti")
+  puts "Hello Bye Bye Proc"
+end
+
+def a
+  p = Proc.new {|name| puts "Hello #{name} ! How are you today ?";}
+  print_name p
+end
+puts a
+
+
